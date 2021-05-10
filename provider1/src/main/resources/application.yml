@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: Provider
+eureka:
+  instance:
+    hostname: localhost
+    appname: ${spring.application.name}
+    app-group-name: provider
+    initial-status: up
+    metadataMap:
+      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+    service-url:
+     defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+server:
+  port: 6666
