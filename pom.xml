@@ -20,7 +20,8 @@
         <spring.cloud-version>Hoxton.SR8</spring.cloud-version>
     </properties>
 
-
+<repositories><repository><name>remote</name><id>aliyun</id><url>http://maven.aliyun.com/nexus/content/groups/public/</url></repository>
+</repositories>
     <dependencyManagement>
         <dependencies>
             <dependency>

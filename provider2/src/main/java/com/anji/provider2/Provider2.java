@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -24,6 +25,8 @@ public class Provider2 {
     @Autowired
     HelloClient helloClient;
 
+    @Autowired
+    DiscoveryClient discoveryClient;
 
     public static void main(String[] args) {
 
@@ -43,7 +46,7 @@ public class Provider2 {
         return helloClient.hello();
     }
 
-    @FeignClient("HelloServer")
+    @FeignClient("Provider")
     interface HelloClient {
         @RequestMapping(value = "/", method = GET)
         String hello();
