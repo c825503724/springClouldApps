@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: Provider1
+  cloud:
+    config:
+      discovery:
+        enabled: true
+eureka:
+  instance:
+    hostname: localhost
+    appname: ${spring.application.name}
+    app-group-name: provider1
+    initial-status: up
+    metadataMap:
+      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/

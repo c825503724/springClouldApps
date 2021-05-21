@@ -1,0 +1,29 @@
+spring:
+  profiles:
+    active: pro
+  application:
+    name: provider1
+  cloud:
+    config:
+      label: master
+      discovery:
+        enabled: true
+        service-id: configserver
+    loadbalancer:
+      ribbon:
+        enabled: false
+  rabbitmq:
+    port: 5672
+eureka:
+  instance:
+    hostname: localhost
+    appname: provider1
+    initial-status: up
+    lease-renewal-interval-in-seconds: 10
+    metadata-map:
+      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true

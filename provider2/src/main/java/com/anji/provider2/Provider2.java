@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +21,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @EnableFeignClients
 @RestController
 @EnableDiscoveryClient
+@RefreshScope
 public class Provider2 {
 
     @Autowired
@@ -40,10 +42,16 @@ public class Provider2 {
         return new RestTemplate();
     }
 
+    @Autowired
+    private User user;
 
-    @GetMapping("/")
-    public String test(){
-        return helloClient.hello();
+
+
+    @GetMapping("")
+    String user(){
+
+        return user.getUserName();
+
     }
 
     @FeignClient("Provider")

@@ -17,8 +17,8 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>com.netflix.zuul</groupId>
-            <artifactId>zuul-core</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
 
         </dependency>
     </dependencies>

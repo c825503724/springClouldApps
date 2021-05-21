@@ -1,20 +1,15 @@
 server:
-  port: 0
-spring:
-  application:
-    name: provider2
-  cloud:
-    loadbalancer:
-      ribbon:
-        enabled: false
-eureka:
-  instance:
-    hostname: localhost
-    appname: provider2
-    initial-status: up
-    lease-renewal-interval-in-seconds: 10
-    metadata-map:
-      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
-  client:
-    service-url:
-      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+  port: 9991
+management:
+  endpoint:
+    shutdown:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+data:
+  env: NaN
+  user:
+    username: NaN
+    password: NaN
